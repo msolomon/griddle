@@ -1,0 +1,284 @@
+<html>
+    <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Hammerspoon docs: Griddle</title>
+    <style type="text/css">
+      a { text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      th { background-color: #DDDDDD; vertical-align: top; padding: 3px; }
+      td { width: 100%; background-color: #EEEEEE; vertical-align: top; padding: 3px; }
+      table { width: 100% ; border: 1px solid #0; text-align: left; }
+      section > table table td { width: 0; }
+    </style>
+    <link rel="stylesheet" href="docs.css" type="text/css" media="screen" />
+  </head>
+  <body>
+    <header>
+      <h1><a href="./index.html">docs</a> &raquo; Griddle</h1>
+      <p>Use the keyboard as a mouse by selecting successively smaller grids on the screen</p>
+<p>Download: <a href="https://github.com/msolomon/griddle/raw/master/Griddle.spoon.zip">https://github.com/msolomon/griddle/raw/master/Griddle.spoon.zip</a></p>
+<p>Griddle is used by entering Griddle mode using a hotkey.
+An overlay will then appear over the screen, dividing it into a 3x3 grid with a key shortcut corresponding to each.
+Pressing the key shortcut moves the mouse to that grid location and the grid is replaced with a new smaller grid.
+This process is repeated until the mouse is in the desired location,
+then another key (usually <code>f</code>) is pressed to click the mouse and the grid disappears.</p>
+<p>This allows the user to click arbitrary screen locations without using the physical mouse.
+With a bit of practice, this can be quite efficient.
+Double/triple click, right click, click-and-drag, and multiple monitors are all supported.</p>
+
+      </header>
+      <h3>API Overview</h3>
+      <ul>
+        <li>Variables - Configurable values</li>
+          <ul>
+            <li><a href="#absoluteShortcuts">absoluteShortcuts</a></li>
+            <li><a href="#exitAfterLeftClick">exitAfterLeftClick</a></li>
+            <li><a href="#exitAfterRightClick">exitAfterRightClick</a></li>
+            <li><a href="#fineMoveDistance">fineMoveDistance</a></li>
+            <li><a href="#otherShortcuts">otherShortcuts</a></li>
+            <li><a href="#relativeShortcuts">relativeShortcuts</a></li>
+          </ul>
+        <li>Methods - API calls which can only be made on an object returned by a constructor</li>
+          <ul>
+            <li><a href="#bindHotkeys">bindHotkeys</a></li>
+            <li><a href="#enter">enter</a></li>
+            <li><a href="#exit">exit</a></li>
+            <li><a href="#start">start</a></li>
+          </ul>
+      </ul>
+      <h3>API Documentation</h3>
+        <h4 class="documentation-section">Variables</h4>
+          <section id="absoluteShortcuts">
+            <a name="//apple_ref/cpp/Variable/absoluteShortcuts" class="dashAnchor"></a>
+            <h5><a href="#absoluteShortcuts">absoluteShortcuts</a></h5>
+            <table>
+              <tr>
+                <th>Signature</th>
+                <td><code>Griddle.absoluteShortcuts</code></td>
+              </tr>
+              <tr>
+                <th>Type</th>
+                <td>Variable</td>
+              </tr>
+              <tr>
+                <th>Description</th>
+                <td><p>A table mapping keys to locations on the on-screen grid.</p>
+<p>Griddle is typically used by entering Griddle mode using a hotkey,
+then choosing successively more specific grid locations using these absolute shortcuts.
+Once the mouse is in the correct location, the user clicks using the <code>leftClick</code> key.</p>
+<p>Grid locations are named by row and column:</p>
+<p><code>tl | tc | tr</code></p>
+<p><code>---+----+---</code></p>
+<p><code>cl | cc | cr</code></p>
+<p><code>---+----+---</code></p>
+<p><code>bl | bc | br</code></p>
+<p><code>tl</code> is top left,
+<code>tc</code> is top center,
+<code>tr</code> is top right,
+<code>cl</code> is center left,
+<code>cc</code> is center center,
+<code>cr</code> is center right,
+<code>bl</code> is bottom left,
+<code>bc</code> is bottom center,
+<code>br</code> is bottom right.</p>
+<p>Keys are chosen using their name as a string.
+Bindings may be omitted using <code>nil</code>.
+Multiple bindings are possible by specifying a table instead.</p>
+<p>By default, keys are chosen for the 3x3 grid underneath the index,
+middle and ring finger of the right hand home-row on a QWERTY keyboard:</p>
+<p><code>{tl = 'u', tc = 'i', tr = 'o', cl = 'j', cc = 'k', cr = 'l', bl = {'n', 'm'}, bc = ',', br = '.'}</code></p>
+</td>
+              </tr>
+            </table>
+          </section>
+          <section id="exitAfterLeftClick">
+            <a name="//apple_ref/cpp/Variable/exitAfterLeftClick" class="dashAnchor"></a>
+            <h5><a href="#exitAfterLeftClick">exitAfterLeftClick</a></h5>
+            <table>
+              <tr>
+                <th>Signature</th>
+                <td><code>Griddle.exitAfterLeftClick</code></td>
+              </tr>
+              <tr>
+                <th>Type</th>
+                <td>Variable</td>
+              </tr>
+              <tr>
+                <th>Description</th>
+                <td><p>A boolean determining whether to exit Griddle mode after pressing <code>leftClick</code>. Defaults to <code>true</code>.</p>
+</td>
+              </tr>
+            </table>
+          </section>
+          <section id="exitAfterRightClick">
+            <a name="//apple_ref/cpp/Variable/exitAfterRightClick" class="dashAnchor"></a>
+            <h5><a href="#exitAfterRightClick">exitAfterRightClick</a></h5>
+            <table>
+              <tr>
+                <th>Signature</th>
+                <td><code>Griddle.exitAfterRightClick</code></td>
+              </tr>
+              <tr>
+                <th>Type</th>
+                <td>Variable</td>
+              </tr>
+              <tr>
+                <th>Description</th>
+                <td><p>A boolean determining whether to exit Griddle mode after pressing <code>rightClick</code>. Defaults to <code>false</code>.</p>
+</td>
+              </tr>
+            </table>
+          </section>
+          <section id="fineMoveDistance">
+            <a name="//apple_ref/cpp/Variable/fineMoveDistance" class="dashAnchor"></a>
+            <h5><a href="#fineMoveDistance">fineMoveDistance</a></h5>
+            <table>
+              <tr>
+                <th>Signature</th>
+                <td><code>Griddle.fineMoveDistance</code></td>
+              </tr>
+              <tr>
+                <th>Type</th>
+                <td>Variable</td>
+              </tr>
+              <tr>
+                <th>Description</th>
+                <td><p>The number of pixels to move when using <code>relativeShortcuts</code>. Defaults to 8.</p>
+</td>
+              </tr>
+            </table>
+          </section>
+          <section id="otherShortcuts">
+            <a name="//apple_ref/cpp/Variable/otherShortcuts" class="dashAnchor"></a>
+            <h5><a href="#otherShortcuts">otherShortcuts</a></h5>
+            <table>
+              <tr>
+                <th>Signature</th>
+                <td><code>Griddle.otherShortcuts</code></td>
+              </tr>
+              <tr>
+                <th>Type</th>
+                <td>Variable</td>
+              </tr>
+              <tr>
+                <th>Description</th>
+                <td><p>A table mapping keys to other actions in Griddle mode:
+<code>leftClick</code>, which clicks the left mouse button. Defaults to <code>f</code>.
+<code>rightClick</code>, which clicks the right mouse button. DDefaults to <code>g</code>.
+<code>nextMonitor</code>, which moves the grid to the next monitor. Defaults to <code>;</code>.
+<code>exit</code>, which exits Griddle mode. Defaults to <code>{'return', 'escape', 'capslock', 'space'}</code>.</p>
+</td>
+              </tr>
+            </table>
+          </section>
+          <section id="relativeShortcuts">
+            <a name="//apple_ref/cpp/Variable/relativeShortcuts" class="dashAnchor"></a>
+            <h5><a href="#relativeShortcuts">relativeShortcuts</a></h5>
+            <table>
+              <tr>
+                <th>Signature</th>
+                <td><code>Griddle.relativeShortcuts</code></td>
+              </tr>
+              <tr>
+                <th>Type</th>
+                <td>Variable</td>
+              </tr>
+              <tr>
+                <th>Description</th>
+                <td><p>A table mapping keys to directions relative to the present mouse location.</p>
+<p>The mouse location may be refined by using these keys to move the cursor a short distance.
+Directions are chosen using the same style 3x3 grid as specified in <code>absoluteShortcuts</code>.</p>
+<p>By default, keys are chosen for the 3x3 grid underneath the pinky, ring, and middle finger
+of the right hand home-row on a QWERTY keyboard.
+The default also supports WASD movement:
+<code>{tl = 'q', tc = 'w', tr = 'e', cl = 'a', cc = nil, cr = 'd', bl = 'z', bc = {'x', 's'}, br = 'c'}</code></p>
+</td>
+              </tr>
+            </table>
+          </section>
+        <h4 class="documentation-section">Methods</h4>
+          <section id="bindHotkeys">
+            <a name="//apple_ref/cpp/Method/bindHotkeys" class="dashAnchor"></a>
+            <h5><a href="#bindHotkeys">bindHotkeys</a></h5>
+            <table>
+              <tr>
+                <th>Signature</th>
+                <td><code>Griddle:bindHotkeys()</code></td>
+              </tr>
+              <tr>
+                <th>Type</th>
+                <td>Method</td>
+              </tr>
+              <tr>
+                <th>Description</th>
+                <td><p>Bind a hotkey to enter Griddle mode.
+Accepts a table like <code>{ enter = {{"cmd", "shift"}, "j"} }</code>
+<code>enter</code> and <code>exit</code> may both be defined, but typically only <code>enter</code> is necessary.</p>
+</td>
+              </tr>
+            </table>
+          </section>
+          <section id="enter">
+            <a name="//apple_ref/cpp/Method/enter" class="dashAnchor"></a>
+            <h5><a href="#enter">enter</a></h5>
+            <table>
+              <tr>
+                <th>Signature</th>
+                <td><code>Griddle:enter()</code></td>
+              </tr>
+              <tr>
+                <th>Type</th>
+                <td>Method</td>
+              </tr>
+              <tr>
+                <th>Description</th>
+                <td><p>Enter Griddle mode on the sceen with a focused window.</p>
+<p>May not be called before <code>Griddle:start()</code>.</p>
+<p>Accepts one optional argument that specifies the time to fade in in seconds. Defaults to <code>0.2</code>.</p>
+</td>
+              </tr>
+            </table>
+          </section>
+          <section id="exit">
+            <a name="//apple_ref/cpp/Method/exit" class="dashAnchor"></a>
+            <h5><a href="#exit">exit</a></h5>
+            <table>
+              <tr>
+                <th>Signature</th>
+                <td><code>Griddle:exit()</code></td>
+              </tr>
+              <tr>
+                <th>Type</th>
+                <td>Method</td>
+              </tr>
+              <tr>
+                <th>Description</th>
+                <td><p>Exit Griddle mode.</p>
+<p>May not be called before <code>Griddle:start()</code>.</p>
+<p>Accepts one optional argument that specifies the time to fade out in seconds. Defaults to <code>0.2</code>.</p>
+</td>
+              </tr>
+            </table>
+          </section>
+          <section id="start">
+            <a name="//apple_ref/cpp/Method/start" class="dashAnchor"></a>
+            <h5><a href="#start">start</a></h5>
+            <table>
+              <tr>
+                <th>Signature</th>
+                <td><code>Griddle:start()</code></td>
+              </tr>
+              <tr>
+                <th>Type</th>
+                <td>Method</td>
+              </tr>
+              <tr>
+                <th>Description</th>
+                <td><p>Enable Griddle and bind any configured hotkeys.
+Returns a function you can call to enter Griddle mode.</p>
+</td>
+              </tr>
+            </table>
+          </section>
+  </body>
+</html>

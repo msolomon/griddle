@@ -1,0 +1,67 @@
+[
+  {
+    "desc": "Use the keyboard as a mouse by selecting successively smaller grids on the screen",
+    "name": "Griddle",
+    "type": "Module"
+  },
+  {
+    "desc": "A table mapping keys to locations on the on-screen grid.",
+    "module": "Griddle",
+    "name": "absoluteShortcuts",
+    "type": "Variable"
+  },
+  {
+    "desc": "A boolean determining whether to exit Griddle mode after pressing `leftClick`. Defaults to `true`.",
+    "module": "Griddle",
+    "name": "exitAfterLeftClick",
+    "type": "Variable"
+  },
+  {
+    "desc": "A boolean determining whether to exit Griddle mode after pressing `rightClick`. Defaults to `false`.",
+    "module": "Griddle",
+    "name": "exitAfterRightClick",
+    "type": "Variable"
+  },
+  {
+    "desc": "The number of pixels to move when using `relativeShortcuts`. Defaults to 8.",
+    "module": "Griddle",
+    "name": "fineMoveDistance",
+    "type": "Variable"
+  },
+  {
+    "desc": "A table mapping keys to other actions in Griddle mode:",
+    "module": "Griddle",
+    "name": "otherShortcuts",
+    "type": "Variable"
+  },
+  {
+    "desc": "A table mapping keys to directions relative to the present mouse location.",
+    "module": "Griddle",
+    "name": "relativeShortcuts",
+    "type": "Variable"
+  },
+  {
+    "desc": "Bind a hotkey to enter Griddle mode.",
+    "module": "Griddle",
+    "name": "bindHotkeys",
+    "type": "Method"
+  },
+  {
+    "desc": "Enter Griddle mode on the sceen with a focused window.",
+    "module": "Griddle",
+    "name": "enter",
+    "type": "Method"
+  },
+  {
+    "desc": "Exit Griddle mode.",
+    "module": "Griddle",
+    "name": "exit",
+    "type": "Method"
+  },
+  {
+    "desc": "Enable Griddle and bind any configured hotkeys.",
+    "module": "Griddle",
+    "name": "start",
+    "type": "Method"
+  }
+]

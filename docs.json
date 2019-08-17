@@ -1,0 +1,202 @@
+[
+  {
+    "Command": [],
+    "Constant": [],
+    "Constructor": [],
+    "Deprecated": [],
+    "Field": [],
+    "Function": [],
+    "Method": [
+      {
+        "def": "Griddle:bindHotkeys()",
+        "desc": "Bind a hotkey to enter Griddle mode.",
+        "doc": "Bind a hotkey to enter Griddle mode.\nAccepts a table like `{ enter = {{\"cmd\", \"shift\"}, \"j\"} }`\n`enter` and `exit` may both be defined, but typically only `enter` is necessary.",
+        "name": "bindHotkeys",
+        "signature": "Griddle:bindHotkeys()",
+        "stripped_doc": "Accepts a table like `{ enter = {{\"cmd\", \"shift\"}, \"j\"} }`\n`enter` and `exit` may both be defined, but typically only `enter` is necessary.",
+        "type": "Method"
+      },
+      {
+        "def": "Griddle:enter()",
+        "desc": "Enter Griddle mode on the sceen with a focused window.",
+        "doc": "Enter Griddle mode on the sceen with a focused window.\n\nMay not be called before `Griddle:start()`.\n\nAccepts one optional argument that specifies the time to fade in in seconds. Defaults to `0.2`.",
+        "name": "enter",
+        "signature": "Griddle:enter()",
+        "stripped_doc": "May not be called before `Griddle:start()`.\nAccepts one optional argument that specifies the time to fade in in seconds. Defaults to `0.2`.",
+        "type": "Method"
+      },
+      {
+        "def": "Griddle:exit()",
+        "desc": "Exit Griddle mode.",
+        "doc": "Exit Griddle mode.\n\nMay not be called before `Griddle:start()`.\n\nAccepts one optional argument that specifies the time to fade out in seconds. Defaults to `0.2`.",
+        "name": "exit",
+        "signature": "Griddle:exit()",
+        "stripped_doc": "May not be called before `Griddle:start()`.\nAccepts one optional argument that specifies the time to fade out in seconds. Defaults to `0.2`.",
+        "type": "Method"
+      },
+      {
+        "def": "Griddle:start()",
+        "desc": "Enable Griddle and bind any configured hotkeys.",
+        "doc": "Enable Griddle and bind any configured hotkeys.\nReturns a function you can call to enter Griddle mode.",
+        "name": "start",
+        "signature": "Griddle:start()",
+        "stripped_doc": "Returns a function you can call to enter Griddle mode.",
+        "type": "Method"
+      }
+    ],
+    "Variable": [
+      {
+        "def": "Griddle.absoluteShortcuts",
+        "desc": "A table mapping keys to locations on the on-screen grid.",
+        "doc": "A table mapping keys to locations on the on-screen grid.\n\nGriddle is typically used by entering Griddle mode using a hotkey,\nthen choosing successively more specific grid locations using these absolute shortcuts.\nOnce the mouse is in the correct location, the user clicks using the `leftClick` key.\n\nGrid locations are named by row and column:\n\n`tl | tc | tr`\n\n`---+----+---`\n\n`cl | cc | cr`\n\n`---+----+---`\n\n`bl | bc | br`\n\n`tl` is top left,\n`tc` is top center,\n`tr` is top right,\n`cl` is center left,\n`cc` is center center,\n`cr` is center right,\n`bl` is bottom left,\n`bc` is bottom center,\n`br` is bottom right.\n\nKeys are chosen using their name as a string.\nBindings may be omitted using `nil`.\nMultiple bindings are possible by specifying a table instead.\n\nBy default, keys are chosen for the 3x3 grid underneath the index,\nmiddle and ring finger of the right hand home-row on a QWERTY keyboard:\n\n`{tl = 'u', tc = 'i', tr = 'o', cl = 'j', cc = 'k', cr = 'l', bl = {'n', 'm'}, bc = ',', br = '.'}`",
+        "name": "absoluteShortcuts",
+        "signature": "Griddle.absoluteShortcuts",
+        "stripped_doc": "Griddle is typically used by entering Griddle mode using a hotkey,\nthen choosing successively more specific grid locations using these absolute shortcuts.\nOnce the mouse is in the correct location, the user clicks using the `leftClick` key.\nGrid locations are named by row and column:\n`tl | tc | tr`\n`---+----+---`\n`cl | cc | cr`\n`---+----+---`\n`bl | bc | br`\n`tl` is top left,\n`tc` is top center,\n`tr` is top right,\n`cl` is center left,\n`cc` is center center,\n`cr` is center right,\n`bl` is bottom left,\n`bc` is bottom center,\n`br` is bottom right.\nKeys are chosen using their name as a string.\nBindings may be omitted using `nil`.\nMultiple bindings are possible by specifying a table instead.\nBy default, keys are chosen for the 3x3 grid underneath the index,\nmiddle and ring finger of the right hand home-row on a QWERTY keyboard:\n`{tl = 'u', tc = 'i', tr = 'o', cl = 'j', cc = 'k', cr = 'l', bl = {'n', 'm'}, bc = ',', br = '.'}`",
+        "type": "Variable"
+      },
+      {
+        "def": "Griddle.exitAfterLeftClick",
+        "desc": "A boolean determining whether to exit Griddle mode after pressing `leftClick`. Defaults to `true`.",
+        "doc": "A boolean determining whether to exit Griddle mode after pressing `leftClick`. Defaults to `true`.",
+        "name": "exitAfterLeftClick",
+        "signature": "Griddle.exitAfterLeftClick",
+        "stripped_doc": "",
+        "type": "Variable"
+      },
+      {
+        "def": "Griddle.exitAfterRightClick",
+        "desc": "A boolean determining whether to exit Griddle mode after pressing `rightClick`. Defaults to `false`.",
+        "doc": "A boolean determining whether to exit Griddle mode after pressing `rightClick`. Defaults to `false`.",
+        "name": "exitAfterRightClick",
+        "signature": "Griddle.exitAfterRightClick",
+        "stripped_doc": "",
+        "type": "Variable"
+      },
+      {
+        "def": "Griddle.fineMoveDistance",
+        "desc": "The number of pixels to move when using `relativeShortcuts`. Defaults to 8.",
+        "doc": "The number of pixels to move when using `relativeShortcuts`. Defaults to 8.",
+        "name": "fineMoveDistance",
+        "signature": "Griddle.fineMoveDistance",
+        "stripped_doc": "",
+        "type": "Variable"
+      },
+      {
+        "def": "Griddle.otherShortcuts",
+        "desc": "A table mapping keys to other actions in Griddle mode:",
+        "doc": "A table mapping keys to other actions in Griddle mode:\n`leftClick`, which clicks the left mouse button. Defaults to `f`.\n`rightClick`, which clicks the right mouse button. DDefaults to `g`.\n`nextMonitor`, which moves the grid to the next monitor. Defaults to `;`.\n`exit`, which exits Griddle mode. Defaults to `{'return', 'escape', 'capslock', 'space'}`.",
+        "name": "otherShortcuts",
+        "signature": "Griddle.otherShortcuts",
+        "stripped_doc": "`leftClick`, which clicks the left mouse button. Defaults to `f`.\n`rightClick`, which clicks the right mouse button. DDefaults to `g`.\n`nextMonitor`, which moves the grid to the next monitor. Defaults to `;`.\n`exit`, which exits Griddle mode. Defaults to `{'return', 'escape', 'capslock', 'space'}`.",
+        "type": "Variable"
+      },
+      {
+        "def": "Griddle.relativeShortcuts",
+        "desc": "A table mapping keys to directions relative to the present mouse location.",
+        "doc": "A table mapping keys to directions relative to the present mouse location.\n\nThe mouse location may be refined by using these keys to move the cursor a short distance.\nDirections are chosen using the same style 3x3 grid as specified in `absoluteShortcuts`.\n\nBy default, keys are chosen for the 3x3 grid underneath the pinky, ring, and middle finger\nof the right hand home-row on a QWERTY keyboard.\nThe default also supports WASD movement:\n`{tl = 'q', tc = 'w', tr = 'e', cl = 'a', cc = nil, cr = 'd', bl = 'z', bc = {'x', 's'}, br = 'c'}`",
+        "name": "relativeShortcuts",
+        "signature": "Griddle.relativeShortcuts",
+        "stripped_doc": "The mouse location may be refined by using these keys to move the cursor a short distance.\nDirections are chosen using the same style 3x3 grid as specified in `absoluteShortcuts`.\nBy default, keys are chosen for the 3x3 grid underneath the pinky, ring, and middle finger\nof the right hand home-row on a QWERTY keyboard.\nThe default also supports WASD movement:\n`{tl = 'q', tc = 'w', tr = 'e', cl = 'a', cc = nil, cr = 'd', bl = 'z', bc = {'x', 's'}, br = 'c'}`",
+        "type": "Variable"
+      }
+    ],
+    "desc": "Use the keyboard as a mouse by selecting successively smaller grids on the screen",
+    "doc": "Use the keyboard as a mouse by selecting successively smaller grids on the screen\n\nDownload: [https://github.com/msolomon/griddle/raw/master/Griddle.spoon.zip](https://github.com/msolomon/griddle/raw/master/Griddle.spoon.zip)\n\nGriddle is used by entering Griddle mode using a hotkey.\nAn overlay will then appear over the screen, dividing it into a 3x3 grid with a key shortcut corresponding to each.\nPressing the key shortcut moves the mouse to that grid location and the grid is replaced with a new smaller grid.\nThis process is repeated until the mouse is in the desired location,\nthen another key (usually `f`) is pressed to click the mouse and the grid disappears.\n\nThis allows the user to click arbitrary screen locations without using the physical mouse.\nWith a bit of practice, this can be quite efficient.\nDouble/triple click, right click, click-and-drag, and multiple monitors are all supported.\n",
+    "items": [
+      {
+        "def": "Griddle.absoluteShortcuts",
+        "desc": "A table mapping keys to locations on the on-screen grid.",
+        "doc": "A table mapping keys to locations on the on-screen grid.\n\nGriddle is typically used by entering Griddle mode using a hotkey,\nthen choosing successively more specific grid locations using these absolute shortcuts.\nOnce the mouse is in the correct location, the user clicks using the `leftClick` key.\n\nGrid locations are named by row and column:\n\n`tl | tc | tr`\n\n`---+----+---`\n\n`cl | cc | cr`\n\n`---+----+---`\n\n`bl | bc | br`\n\n`tl` is top left,\n`tc` is top center,\n`tr` is top right,\n`cl` is center left,\n`cc` is center center,\n`cr` is center right,\n`bl` is bottom left,\n`bc` is bottom center,\n`br` is bottom right.\n\nKeys are chosen using their name as a string.\nBindings may be omitted using `nil`.\nMultiple bindings are possible by specifying a table instead.\n\nBy default, keys are chosen for the 3x3 grid underneath the index,\nmiddle and ring finger of the right hand home-row on a QWERTY keyboard:\n\n`{tl = 'u', tc = 'i', tr = 'o', cl = 'j', cc = 'k', cr = 'l', bl = {'n', 'm'}, bc = ',', br = '.'}`",
+        "name": "absoluteShortcuts",
+        "signature": "Griddle.absoluteShortcuts",
+        "stripped_doc": "Griddle is typically used by entering Griddle mode using a hotkey,\nthen choosing successively more specific grid locations using these absolute shortcuts.\nOnce the mouse is in the correct location, the user clicks using the `leftClick` key.\nGrid locations are named by row and column:\n`tl | tc | tr`\n`---+----+---`\n`cl | cc | cr`\n`---+----+---`\n`bl | bc | br`\n`tl` is top left,\n`tc` is top center,\n`tr` is top right,\n`cl` is center left,\n`cc` is center center,\n`cr` is center right,\n`bl` is bottom left,\n`bc` is bottom center,\n`br` is bottom right.\nKeys are chosen using their name as a string.\nBindings may be omitted using `nil`.\nMultiple bindings are possible by specifying a table instead.\nBy default, keys are chosen for the 3x3 grid underneath the index,\nmiddle and ring finger of the right hand home-row on a QWERTY keyboard:\n`{tl = 'u', tc = 'i', tr = 'o', cl = 'j', cc = 'k', cr = 'l', bl = {'n', 'm'}, bc = ',', br = '.'}`",
+        "type": "Variable"
+      },
+      {
+        "def": "Griddle:bindHotkeys()",
+        "desc": "Bind a hotkey to enter Griddle mode.",
+        "doc": "Bind a hotkey to enter Griddle mode.\nAccepts a table like `{ enter = {{\"cmd\", \"shift\"}, \"j\"} }`\n`enter` and `exit` may both be defined, but typically only `enter` is necessary.",
+        "name": "bindHotkeys",
+        "signature": "Griddle:bindHotkeys()",
+        "stripped_doc": "Accepts a table like `{ enter = {{\"cmd\", \"shift\"}, \"j\"} }`\n`enter` and `exit` may both be defined, but typically only `enter` is necessary.",
+        "type": "Method"
+      },
+      {
+        "def": "Griddle:enter()",
+        "desc": "Enter Griddle mode on the sceen with a focused window.",
+        "doc": "Enter Griddle mode on the sceen with a focused window.\n\nMay not be called before `Griddle:start()`.\n\nAccepts one optional argument that specifies the time to fade in in seconds. Defaults to `0.2`.",
+        "name": "enter",
+        "signature": "Griddle:enter()",
+        "stripped_doc": "May not be called before `Griddle:start()`.\nAccepts one optional argument that specifies the time to fade in in seconds. Defaults to `0.2`.",
+        "type": "Method"
+      },
+      {
+        "def": "Griddle:exit()",
+        "desc": "Exit Griddle mode.",
+        "doc": "Exit Griddle mode.\n\nMay not be called before `Griddle:start()`.\n\nAccepts one optional argument that specifies the time to fade out in seconds. Defaults to `0.2`.",
+        "name": "exit",
+        "signature": "Griddle:exit()",
+        "stripped_doc": "May not be called before `Griddle:start()`.\nAccepts one optional argument that specifies the time to fade out in seconds. Defaults to `0.2`.",
+        "type": "Method"
+      },
+      {
+        "def": "Griddle.exitAfterLeftClick",
+        "desc": "A boolean determining whether to exit Griddle mode after pressing `leftClick`. Defaults to `true`.",
+        "doc": "A boolean determining whether to exit Griddle mode after pressing `leftClick`. Defaults to `true`.",
+        "name": "exitAfterLeftClick",
+        "signature": "Griddle.exitAfterLeftClick",
+        "stripped_doc": "",
+        "type": "Variable"
+      },
+      {
+        "def": "Griddle.exitAfterRightClick",
+        "desc": "A boolean determining whether to exit Griddle mode after pressing `rightClick`. Defaults to `false`.",
+        "doc": "A boolean determining whether to exit Griddle mode after pressing `rightClick`. Defaults to `false`.",
+        "name": "exitAfterRightClick",
+        "signature": "Griddle.exitAfterRightClick",
+        "stripped_doc": "",
+        "type": "Variable"
+      },
+      {
+        "def": "Griddle.fineMoveDistance",
+        "desc": "The number of pixels to move when using `relativeShortcuts`. Defaults to 8.",
+        "doc": "The number of pixels to move when using `relativeShortcuts`. Defaults to 8.",
+        "name": "fineMoveDistance",
+        "signature": "Griddle.fineMoveDistance",
+        "stripped_doc": "",
+        "type": "Variable"
+      },
+      {
+        "def": "Griddle.otherShortcuts",
+        "desc": "A table mapping keys to other actions in Griddle mode:",
+        "doc": "A table mapping keys to other actions in Griddle mode:\n`leftClick`, which clicks the left mouse button. Defaults to `f`.\n`rightClick`, which clicks the right mouse button. DDefaults to `g`.\n`nextMonitor`, which moves the grid to the next monitor. Defaults to `;`.\n`exit`, which exits Griddle mode. Defaults to `{'return', 'escape', 'capslock', 'space'}`.",
+        "name": "otherShortcuts",
+        "signature": "Griddle.otherShortcuts",
+        "stripped_doc": "`leftClick`, which clicks the left mouse button. Defaults to `f`.\n`rightClick`, which clicks the right mouse button. DDefaults to `g`.\n`nextMonitor`, which moves the grid to the next monitor. Defaults to `;`.\n`exit`, which exits Griddle mode. Defaults to `{'return', 'escape', 'capslock', 'space'}`.",
+        "type": "Variable"
+      },
+      {
+        "def": "Griddle.relativeShortcuts",
+        "desc": "A table mapping keys to directions relative to the present mouse location.",
+        "doc": "A table mapping keys to directions relative to the present mouse location.\n\nThe mouse location may be refined by using these keys to move the cursor a short distance.\nDirections are chosen using the same style 3x3 grid as specified in `absoluteShortcuts`.\n\nBy default, keys are chosen for the 3x3 grid underneath the pinky, ring, and middle finger\nof the right hand home-row on a QWERTY keyboard.\nThe default also supports WASD movement:\n`{tl = 'q', tc = 'w', tr = 'e', cl = 'a', cc = nil, cr = 'd', bl = 'z', bc = {'x', 's'}, br = 'c'}`",
+        "name": "relativeShortcuts",
+        "signature": "Griddle.relativeShortcuts",
+        "stripped_doc": "The mouse location may be refined by using these keys to move the cursor a short distance.\nDirections are chosen using the same style 3x3 grid as specified in `absoluteShortcuts`.\nBy default, keys are chosen for the 3x3 grid underneath the pinky, ring, and middle finger\nof the right hand home-row on a QWERTY keyboard.\nThe default also supports WASD movement:\n`{tl = 'q', tc = 'w', tr = 'e', cl = 'a', cc = nil, cr = 'd', bl = 'z', bc = {'x', 's'}, br = 'c'}`",
+        "type": "Variable"
+      },
+      {
+        "def": "Griddle:start()",
+        "desc": "Enable Griddle and bind any configured hotkeys.",
+        "doc": "Enable Griddle and bind any configured hotkeys.\nReturns a function you can call to enter Griddle mode.",
+        "name": "start",
+        "signature": "Griddle:start()",
+        "stripped_doc": "Returns a function you can call to enter Griddle mode.",
+        "type": "Method"
+      }
+    ],
+    "name": "Griddle",
+    "stripped_doc": "\nDownload: [https://github.com/msolomon/griddle/raw/master/Griddle.spoon.zip](https://github.com/msolomon/griddle/raw/master/Griddle.spoon.zip)\n\nGriddle is used by entering Griddle mode using a hotkey.\nAn overlay will then appear over the screen, dividing it into a 3x3 grid with a key shortcut corresponding to each.\nPressing the key shortcut moves the mouse to that grid location and the grid is replaced with a new smaller grid.\nThis process is repeated until the mouse is in the desired location,\nthen another key (usually `f`) is pressed to click the mouse and the grid disappears.\n\nThis allows the user to click arbitrary screen locations without using the physical mouse.\nWith a bit of practice, this can be quite efficient.\nDouble/triple click, right click, click-and-drag, and multiple monitors are all supported.\n",
+    "submodules": [],
+    "type": "Module"
+  }
+]
